@@ -78,7 +78,10 @@ def reset_field(translist, hussielist, fieldnumber):
 def assemble_page(parsedlist, markx = True):
     """Assembles the page from the list given as the argument. Returns a string with page text. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use."""
     if markx == True:
-        parsedlist[5] = parsedlist[5] + "\nX"
+        if parsedlist[5] != "":
+            parsedlist[5] = parsedlist[5] + "\nX"
+        else:
+            parsedlist[5] = parsedlist[5] + "X"
     return "\n###\n".join(parsedlist)
 
 def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
