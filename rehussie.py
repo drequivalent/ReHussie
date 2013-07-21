@@ -111,7 +111,7 @@ if __name__ == "__main__":
     import argparse, sys
     parser = argparse.ArgumentParser(prog = 'rehussie', description = 'ReHussie: An emergency tool for resetting the Homestuck Translation Project\nfiles fields to their original values from MS Paint Adventures website.\nFor example:\n> rehussie link 001959\nwill reset a link to the next page on the page number 001959.\nIn order for it to work, you must be in the root directory of the repository.', formatter_class=argparse.RawTextHelpFormatter, epilog = 'COPYRIGHT NOTICE: MS Paint Adventures website and Homestuck belong to Andrew Hussie\nand MS Paint Adventures team. The author of this program makes\nabsolutely no profit from it, and distributes it freely. Anyone can grab it\nand do pretty much what they desire with it, within pretty broad limits of the GPL\nlicense.\nMade with love by dr. Equivalent the Incredible II and the Homestuck (Russian)\nTranslation Project.')
     
-    parser.add_argument("field", choices = ["caption", "hash", "time", "images", "text", "link", "all"], metavar = "field", help = "choose a field to reset. May be set to 'caption', 'hash', 'time',\n'images', 'text', 'link', 'all' If set to 'all', resets all fields")
+    parser.add_argument("field", choices = ["caption", "hash", "time", "images", "text", "link", "all"], metavar = "field", help = "choose a field to reset. May be set to 'caption', 'hash', 'time',\n'images', 'text', 'link', 'all'. If set to 'all', resets all fields")
     parser.add_argument("page", nargs = "+", help = "full 6-digit number or numbers of page or pages to reset")
     args = parser.parse_args()
     if args.field == "all":

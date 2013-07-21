@@ -21,7 +21,7 @@ Usage: rehussie [-h] field page [page ...]
 
 positional arguments:
   field       choose a field to reset. May be set to 'caption', 'hash',
-              'time', 'images', 'text', 'link', 'all' If set to 'all', 
+              'time', 'images', 'text', 'link', 'all'. If set to 'all', 
               resets all fields
   page        full 6-digit number or numbers of page or pages to reset
 
