@@ -6,7 +6,8 @@ files fields to their original values from MS Paint Adventures website.
 For example:
 > rehussie link 001959
 will reset a link to the next page on the page number 01959.
-In order for it to work, you must be in the root directory of the repository.
+In order for it to work, you must be in the root directory of the
+repository.
 
 Инструмент для экстренного сброса значений полей файлов перевода Homestuck
 Translation Project до оригинальных значений с сайта MS Paint Adventures.
@@ -30,9 +31,7 @@ optional arguments:
 
 ==========================================================================
 
-Применение:
-
-rehussie [-h] поле страница [страница ...]
+Синтаксис: rehussie [-h] поле страница [страница ...]
 
 обязательные аргументы:
   поле        определяет поле для сброса. Может быть 'caption', 'hash',
@@ -61,3 +60,21 @@ Made with love by dr. Equivalent the Incredible II and the Homestuck
 GPL.
 dr. Equivalent the Incredible II сделал эту программу с любовью для
 Перевода интерактивного вэб-комикса Homestuck (на русский язык)
+
+==========================================================================
+
+ReHussie is now also in beenary! See ./bin directory. There are x86 and
+x86_64 versions. There will be ARM or SPARC one then, I don't know?
+Why? You can jam it into your ~/.local/bin so that you don't have to
+carry it around and invoke the interpreter. But of course, /usr/bin would
+work better. Or better yet, /bin. Really. This program is so awesome, the
+OS won't start without it anymore, so you better have it in the single-
+user mode.
+
+ReHussie теперь банановый^W в бинарнике! Смотрите в директории ./bin. Там
+есть версии для x86 и x86_64. Может, потом появится для ARM, не знаю.
+Зачем? Вы можете пульнуть ее в ~/.local/bin, чтобы не приходилось таскать
+ее везде с собой и действовать через интерпретатор. Но, конечно, лучше
+загнать в /usr/bin. А еще лучше, в /bin. Серьезно, она настолько классная,
+что операционная система без нее теперь откажется запускаться, так что
+лучше иметь ее доступной в однопользовательском режиме.
