@@ -39,7 +39,7 @@ def parse_page(text):
     It takes a string with page's text as an argument."""
     reslist = text.split("\n###\n")
     dirty = reslist[5]
-    reslist[5] = dirty[:6]
+    reslist[5] = dirty.strip("\nX")
     return reslist
 
 def locate_trans_page(pagenumber, root = os.curdir):
