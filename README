@@ -1,19 +1,63 @@
-ReHussie: An emergency tool for resetting the Homestuck Translation Project
+ReHussie
+==========================================================================
+
+An emergency tool for resetting the Homestuck Translation Project
 files fields to their original values from MS Paint Adventures website.
 For example:
 > rehussie link 001959
 will reset a link to the next page on the page number 01959.
+In order for it to work, you must be in the root directory of the repository.
+
+Инструмент для экстренного сброса значений полей файлов перевода Homestuck
+Translation Project до оригинальных значений с сайта MS Paint Adventures.
+К примеру,
+> rehussie link 001959
+сбросит поле со ссылкой на следующую страницу на странице номер 001959.
+Чтобы программа сработала, Вы должны находиться в корне репозитория.
+
+==========================================================================
+
+Usage: rehussie [-h] field page [page ...]
 
 positional arguments:
-  field       chose a field to reset. May be set to 'caption', 'hash', 'time',
-              'images', 'text', 'link', 'all' If set to 'all', resets all fields
+  field       choose a field to reset. May be set to 'caption', 'hash',
+              'time', 'images', 'text', 'link', 'all' If set to 'all', 
+              resets all fields
   page        full 6-digit number or numbers of page or pages to reset
 
 optional arguments:
   -h, --help  show this help message and exit
 
-COPYRIGHT NOTICE: MS Paint Adventures website and Homestuck belong to Andrew Hussie
-and MS Paint Adventures team. The author of this program makes
-absolutely no profit from it, and distributes it freely. Anyone can grab it
-and do pretty much what they desire with it. Made with love by dr. Equivalent
-the Incredible II and the Homestuck (Russian) Translation Project.
+==========================================================================
+
+Применение:
+
+rehussie [-h] поле страница [страница ...]
+
+обязательные аргументы:
+  поле        определяет поле для сброса. Может быть 'caption', 'hash',
+              'time', 'images', 'text', 'link', 'all'. Если поставить
+              'all', будет сброшена страница целиком
+  страница    полный шестизначный номер страницы для сброса. Может быть
+              несколько
+
+необязательные аругменты:
+  -h --help   показать краткую справку и завершиться
+
+==========================================================================
+
+COPYRIGHT NOTICE: MS Paint Adventures website and Homestuck belong to
+Andrew Hussie and MS Paint Adventures team. The author of this program 
+makes absolutely no profit from it, and distributes it freely. Anyone
+can grab it and do pretty much what they desire with it. within pretty
+broad limits of the GPL license.
+Made with love by dr. Equivalent the Incredible II and the Homestuck 
+(Russian) Translation Project.
+--------------------------------------------------------------------------
+Все права на сайт MS Paint Adventures и Homestuck принадлежат Эндрю Хасси
+и команде MS Paint Adventures. Автор данной программы не получает никакой
+прибыли от нее, и распространяет ее свободно. Любой желающий может взять
+ее и сотворить с ней что душе угодно в довольно свободных рамках лицензии
+GPL.
+dr. Equivalent the Incredible II сделал эту программу с любовью для
+Перевода интерактивного вэб-комикса Homestuck (на русский язык)
