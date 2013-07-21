@@ -1,0 +1,19 @@
+ReHussie: An emergency tool for resetting the Homestuck Translation Project
+files fields to their original values from MS Paint Adventures website.
+For example:
+> rehussie link 001959
+will reset a link to the next page on the page number 01959.
+
+positional arguments:
+  field       chose a field to reset. May be set to 'caption', 'hash', 'time',
+              'images', 'text', 'link', 'all' If set to 'all', resets all fields
+  page        full 6-digit number or numbers of page or pages to reset
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+COPYRIGHT NOTICE: MS Paint Adventures website and Homestuck belong to Andrew Hussie
+and MS Paint Adventures team. The author of this program makes
+absolutely no profit from it, and distributes it freely. Anyone can grab it
+and do pretty much what they desire with it. Made with love by dr. Equivalent
+the Incredible II and the Homestuck (Russian) Translation Project.
