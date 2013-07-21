@@ -57,7 +57,7 @@ def get_trans_page_from_path(path):
 
 def get_trans_page(pagenum):
     """Gets the Translated page by specified pagenumber. Returns a string with page text, that can be fed to parse_page()"""
-    return get_trans_page_from_path(locate_trans_page(pagenum), pagenum)
+    return get_trans_page_from_path(locate_trans_page(pagenum))
 
 def get_parsed_hussies_page(pagenum):
     """a specified page from mspaintadventures.com by specified pagenumber, normalizes Andrew Hussie's EOLs and feeds it to the parse_page(). Returns a list. For description of the contained data, see parse_page()."""
@@ -91,7 +91,7 @@ def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
 
 def write_page(pagenumber, page):
     """Writes the assembled page into the Translated page's file. Takes a page number and a string with page's text. Returns nothing, but writes into file."""
-    trans_page= open(locate_trans_page(pagenumber), "w")
+    trans_page = open(locate_trans_page(pagenumber), "w")
     trans_page.write(page)
     trans_page.close()
 
