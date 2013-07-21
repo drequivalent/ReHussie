@@ -49,8 +49,8 @@ def locate_trans_page(pagenumber, root = os.curdir):
         for filename in fnmatch.filter(files, pattern):
             return os.path.join(path, filename)
 
-def get_trans_page_from_path(path, pagenum = "0"):
-    """Gets the Translated page from path specified in the argument. Returns a string with the page text, that can be fed to parse_page(). Optional page number argument is left for showing an error if something goes wrong."""
+def get_trans_page_from_path(path):
+    """Gets the Translated page from path specified in the argument. Returns a string with the page text, that can be fed to parse_page()."""
     trans_page = open(path)
     return trans_page.read()
         
