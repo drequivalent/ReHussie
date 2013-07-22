@@ -60,7 +60,7 @@ def get_trans_page(pagenum):
     return get_trans_page_from_path(locate_trans_page(pagenum))
 
 def get_parsed_hussies_page(pagenum):
-    """a specified page from mspaintadventures.com by specified pagenumber, normalizes Andrew Hussie's EOLs and feeds it to the parse_page(). Returns a list. For description of the contained data, see parse_page()."""
+    """Gets a specified page from mspaintadventures.com by specified pagenumber, normalizes Andrew Hussie's EOLs and feeds it to the parse_page(). Returns a list. For description of the contained data, see parse_page()."""
     return parse_page(get_hussies_page(pagenum))
 
 def get_parsed_trans_page(pagenum):
@@ -75,13 +75,19 @@ def reset_field(translist, hussielist, fieldnumber):
         translist[fieldnumber] = hussielist[fieldnumber]
     return translist
 
-def assemble_page(parsedlist, markx = True):
-    """Assembles the page from the list given as the argument. Returns a string with page text. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use."""
+def assemble_page(parsedlist, markx = True, onlyfilenames = True):
+    """Assembles the page from the list given as the argument. Returns a string with page text. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use. It also reduces the links in Hussie's page to filenames by default."""
     if markx == True:
         if parsedlist[5] != "":
             parsedlist[5] = parsedlist[5] + "\nX"
         else:
             parsedlist[5] = parsedlist[5] + "X"
+    if onlyfilenames == True:
+        links = parsedlist[3].split("\n")
+        newlinks = []        
+        for element in links:
+            newlinks.append(element.split('/')[-1])
+        parsedlist[3] = "\n".join(newlinks)
     return "\n###\n".join(parsedlist)
 
 def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
