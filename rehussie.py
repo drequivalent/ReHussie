@@ -86,6 +86,8 @@ def assemble_page(parsedlist, markx = True, onlyfilenames = True):
         links = parsedlist[3].split("\n")
         newlinks = []        
         for element in links:
+            if element[:2] == "F|":
+                element = element[2:] + ".swf"
             newlinks.append(element.split('/')[-1])
         parsedlist[3] = "\n".join(newlinks)
     return "\n###\n".join(parsedlist)
