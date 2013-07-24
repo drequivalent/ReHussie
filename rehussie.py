@@ -67,14 +67,6 @@ def get_parsed_trans_page(pagenum):
     """Gets the Translated page from path specified in the argument and feeds it to the parse_page(). Returns a list. For description of the contained data, see parse_page()."""
     return parse_page(get_trans_page(pagenum))
 
-def reset_field(translist, hussielist, fieldnumber):
-    """Resets the field of Translated page's parsed list to the value from Andrew Hussie. Takes the Translated page's list, the list from Ahnrew Hussie's page and the number of field to reset. Returns a list with the reset value. For the description of fields and their numbers, see parse_page(). If set to -1, it scratches the whole page."""
-    if fieldnumber == -1:
-        translist = hussielist
-    else:
-        translist[fieldnumber] = hussielist[fieldnumber]
-    return translist
-
 def assemble_page(parsedlist, markx = True, onlyfilenames = True):
     """Assembles the page from the list given as the argument. Returns a string with page text. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use. It also reduces the links in Hussie's page to filenames by default."""
     if markx == True:
@@ -91,6 +83,18 @@ def assemble_page(parsedlist, markx = True, onlyfilenames = True):
             newlinks.append(element.split('/')[-1])
         parsedlist[3] = "\n".join(newlinks)
     return "\n###\n".join(parsedlist)
+
+###############################################################
+#RESET ZONE: resetting things.
+###############################################################
+
+def reset_field(translist, hussielist, fieldnumber):
+    """Resets the field of Translated page's parsed list to the value from Andrew Hussie. Takes the Translated page's list, the list from Ahnrew Hussie's page and the number of field to reset. Returns a list with the reset value. For the description of fields and their numbers, see parse_page(). If set to -1, it scratches the whole page."""
+    if fieldnumber == -1:
+        translist = hussielist
+    else:
+        translist[fieldnumber] = hussielist[fieldnumber]
+    return translist
 
 def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
     """Resets the field of Translated page's parsed list to the value from Andrew Hussie and assembles the page. Takes the Translated page's list, the list from Ahnrew Hussie's page and the number of field to reset. Returns a string with page text. For the description of fields and their numbers, see parse_page(). If set to -1, it scratches the whole page. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use."""
