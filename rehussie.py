@@ -41,8 +41,8 @@ def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
 
 def run_page_reset(pagenumber, fieldnumber):
     """Just a function that kicks the whole thing into action. Takes a number of page and number of field to reset. Returns nothing."""
-    pdtrans = PyHussie.get_parsed_trans_page(pagenumber)
     pdhussie = PyHussie.get_parsed_hussies_page(pagenumber)
+    pdtrans = PyHussie.get_parsed_trans_page(pagenumber)
     newpagetext = reset_and_assemble(pdtrans, pdhussie, fieldnumber)
     PyHussie.write_page(pagenumber, newpagetext)
     
@@ -73,3 +73,5 @@ if __name__ == "__main__":
             run_page_reset(element, fieldnumber)
         except TypeError:
             sys.stderr.write("rehussie: 404: Make sure that the page "+ element +" actually exists or if you are actually in a Homestuck Translation Project repository. \n")
+        except IOError:
+            sys.stderr.write("rehussie: remote 404: The page "+ element +" does not exist on MS Paint Adventures Website\n")
