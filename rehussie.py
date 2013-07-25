@@ -17,72 +17,7 @@
 #  <xmpp:homestuck@conference.jabber.ru>
 #  dr.Equivalent the Incredible <doctor@equivalent.me>
 
-import urllib
-import os.path
-import os
-import fnmatch
-
-def get_hussies_page(pagenum):
-    """Gets a specified page from mspaintadventures.com by specified pagenumber and normalizes Andrew Hussie's EOLs. Returns a string with clean page text, that can be fed to parse_page()"""
-    hussieresponse = urllib.urlopen("http://www.mspaintadventures.com/6/" + pagenum + ".txt")
-    readhussie = hussieresponse.read()
-    return "\n".join(readhussie.splitlines())
-
-def parse_page(text):
-    """Parses the page, no matter Andrew Hussie's or Translated. Returns a list, containing the following:
-    0. The Caption
-    1. Some weird hash
-    2. The time this page is created
-    3. Links to the visual/interactive content
-    4. The text content
-    5. The link (links) to the next page (pages)
-    It takes a string with page's text as an argument."""
-    reslist = text.split("\n###\n")
-    dirty = reslist[5]
-    reslist[5] = dirty.strip("\nX")
-    return reslist
-
-def locate_trans_page(pagenumber, root = os.curdir):
-    """Locates an absolute path to the specified page. Takes the full page number, returns the path as a string."""
-    pattern = pagenumber + ".txt"    
-    for path, dirs, files in os.walk(os.path.abspath(root)):
-        for filename in fnmatch.filter(files, pattern):
-            return os.path.join(path, filename)
-
-def get_trans_page_from_path(path):
-    """Gets the Translated page from path specified in the argument. Returns a string with the page text, that can be fed to parse_page()."""
-    trans_page = open(path)
-    return trans_page.read()
-        
-
-def get_trans_page(pagenum):
-    """Gets the Translated page by specified pagenumber. Returns a string with page text, that can be fed to parse_page()"""
-    return get_trans_page_from_path(locate_trans_page(pagenum))
-
-def get_parsed_hussies_page(pagenum):
-    """Gets a specified page from mspaintadventures.com by specified pagenumber, normalizes Andrew Hussie's EOLs and feeds it to the parse_page(). Returns a list. For description of the contained data, see parse_page()."""
-    return parse_page(get_hussies_page(pagenum))
-
-def get_parsed_trans_page(pagenum):
-    """Gets the Translated page from path specified in the argument and feeds it to the parse_page(). Returns a list. For description of the contained data, see parse_page()."""
-    return parse_page(get_trans_page(pagenum))
-
-def assemble_page(parsedlist, markx = True, onlyfilenames = True):
-    """Assembles the page from the list given as the argument. Returns a string with page text. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use. It also reduces the links in Hussie's page to filenames by default."""
-    if markx == True:
-        if parsedlist[5] != "":
-            parsedlist[5] = parsedlist[5] + "\nX"
-        else:
-            parsedlist[5] = parsedlist[5] + "X"
-    if onlyfilenames == True:
-        links = parsedlist[3].split("\n")
-        newlinks = []        
-        for element in links:
-            if element[:2] == "F|":
-                element = element[2:] + ".swf"
-            newlinks.append(element.split('/')[-1])
-        parsedlist[3] = "\n".join(newlinks)
-    return "\n###\n".join(parsedlist)
+import PyHussie
 
 ###############################################################
 #RESET ZONE: resetting things.
@@ -98,7 +33,7 @@ def reset_field(translist, hussielist, fieldnumber):
 
 def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
     """Resets the field of Translated page's parsed list to the value from Andrew Hussie and assembles the page. Takes the Translated page's list, the list from Ahnrew Hussie's page and the number of field to reset. Returns a string with page text. For the description of fields and their numbers, see parse_page(). If set to -1, it scratches the whole page. Optionally, it can be told not to append the Newline and X symbol. This option is reserved for future use."""
-    return assemble_page(reset_field(translist, hussielist, fieldnumber), markx)
+    return PyHussie.assemble_page(reset_field(translist, hussielist, fieldnumber), markx)
 
 ###############################################################
 #DANGER ZONE: this thing writes to real files. Handle with care
@@ -106,7 +41,7 @@ def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
 
 def write_page(pagenumber, page):
     """Writes the assembled page into the Translated page's file. Takes a page number and a string with page's text. Returns nothing, but writes into file."""
-    trans_page = open(locate_trans_page(pagenumber), "w")
+    trans_page = open(PyHussie.locate_trans_page(pagenumber), "w")
     trans_page.write(page)
     trans_page.close()
 
@@ -116,8 +51,8 @@ def write_page(pagenumber, page):
 
 def run_page_reset(pagenumber, fieldnumber):
     """Just a function that kicks the whole thing into action. Takes a number of page and number of field to reset. Returns nothing."""
-    pdtrans = get_parsed_trans_page(pagenumber)
-    pdhussie = get_parsed_hussies_page(pagenumber)
+    pdtrans = PyHussie.get_parsed_trans_page(pagenumber)
+    pdhussie = PyHussie.get_parsed_hussies_page(pagenumber)
     newpagetext = reset_and_assemble(pdtrans, pdhussie, fieldnumber)
     write_page (pagenumber, newpagetext)
     
