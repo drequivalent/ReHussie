@@ -36,16 +36,6 @@ def reset_and_assemble(translist, hussielist, fieldnumber, markx = True):
     return PyHussie.assemble_page(reset_field(translist, hussielist, fieldnumber), markx)
 
 ###############################################################
-#DANGER ZONE: this thing writes to real files. Handle with care
-###############################################################
-
-def write_page(pagenumber, page):
-    """Writes the assembled page into the Translated page's file. Takes a page number and a string with page's text. Returns nothing, but writes into file."""
-    trans_page = open(PyHussie.locate_trans_page(pagenumber), "w")
-    trans_page.write(page)
-    trans_page.close()
-
-###############################################################
 #SUPER DANGER ZONE: this should be only used by cli parser
 ###############################################################
 
@@ -54,7 +44,7 @@ def run_page_reset(pagenumber, fieldnumber):
     pdtrans = PyHussie.get_parsed_trans_page(pagenumber)
     pdhussie = PyHussie.get_parsed_hussies_page(pagenumber)
     newpagetext = reset_and_assemble(pdtrans, pdhussie, fieldnumber)
-    write_page (pagenumber, newpagetext)
+    PyHussie.write_page(pagenumber, newpagetext)
     
 
 if __name__ == "__main__":
