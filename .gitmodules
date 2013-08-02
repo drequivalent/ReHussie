@@ -1,0 +1,3 @@
+[submodule "PyHussie"]
+	path = PyHussie
+	url = git@github.com:drequivalent/PyHussie.git
